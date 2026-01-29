@@ -3,297 +3,372 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus | Advanced Student Welfare Portal</title>
+    <title>Nexus | Ultimate Student Welfare Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.3s ease; }
         .hero-gradient {
             background: radial-gradient(circle at top right, #e0f2fe, transparent),
-                        radial-gradient(circle at bottom left, #fefce8, transparent),
-                        #f9f7f2;
+                        radial-gradient(circle at bottom left, #fefce8, transparent), #f9f7f2;
+        }
+        .dark .hero-gradient {
+            background: radial-gradient(circle at top right, #1e293b, transparent),
+                        radial-gradient(circle at bottom left, #0f172a, transparent), #020617;
         }
         .bg-nexus-blue { background-color: #004aad; }
         .text-nexus-blue { color: #004aad; }
-        .bg-nexus-yellow { background-color: #ffde59; }
         .bg-nexus-mint { background-color: #c1ff72; }
-        .glass-card { 
-            background: rgba(255, 255, 255, 0.7); 
-            backdrop-filter: blur(15px); 
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-        }
         .hidden-section { display: none !important; }
         .tab-content { display: none; }
         .tab-content.active { display: block !important; }
         .active-nav { background: #004aad !important; color: white !important; transform: translateX(10px); }
-        .transition-all { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        
-        /* Loading Animation for AI */
-        .dot-flashing {
-            position: relative; width: 10px; height: 10px; border-radius: 5px; background-color: #004aad; color: #004aad;
-            animation: dot-flashing 1s infinite linear alternate; animation-delay: .5s;
-        }
-        @keyframes dot-flashing { 0% { opacity: 0.2; } 100% { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade { animation: fadeIn 0.4s ease forwards; }
+        .disabled-btn { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
     </style>
 </head>
-<body class="bg-gray-50 text-slate-900 overflow-x-hidden">
+<body class="bg-gray-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 overflow-x-hidden">
 
     <div id="page-home" class="min-h-screen flex flex-col hero-gradient">
         <header class="p-6 flex justify-between items-center max-w-7xl mx-auto w-full">
-            <div class="font-extrabold text-2xl tracking-tighter text-nexus-blue">NEXUS.</div>
+            <div class="font-extrabold text-2xl tracking-tighter text-nexus-blue dark:text-blue-400">NEXUS.</div>
             <button onclick="changePage('page-login')" class="font-bold border-2 border-nexus-blue text-nexus-blue px-6 py-2 rounded-full hover:bg-nexus-blue hover:text-white transition-all">Login</button>
         </header>
-
-        <main class="flex-1 flex flex-col md:flex-row items-center justify-between px-10 md:px-20 max-w-7xl mx-auto w-full gap-12">
-            <div class="md:w-1/2 space-y-6">
-                <div class="inline-block bg-nexus-mint px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider">AI-Powered Welfare</div>
-                <h1 class="text-6xl md:text-7xl font-extrabold leading-tight text-slate-900">
-                    Smart <br>
-                    <span class="text-nexus-blue underline decoration-nexus-yellow italic">Empowerment</span>
-                </h1>
-                <p class="text-lg text-slate-600 max-w-md">
-                    Centralized AI verification, scholarship recommendations, and live tracking. Designed for the next generation of students.
-                </p>
-                <div class="pt-6 flex gap-4">
-                    <button onclick="changePage('page-login')" class="bg-nexus-blue text-white font-bold py-4 px-10 rounded-2xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1">
-                        Get Started
-                    </button>
+        <main class="flex-1 grid grid-cols-1 md:grid-cols-2 items-center px-10 md:px-20 max-w-7xl mx-auto w-full gap-8">
+            <div class="space-y-6">
+                <div class="inline-block bg-nexus-mint px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider text-slate-900">AI-Powered Welfare</div>
+                <h1 class="text-6xl md:text-7xl font-extrabold leading-tight text-slate-900 dark:text-white">Smart <br> <span class="text-nexus-blue dark:text-blue-400 italic underline decoration-yellow-400">Empowerment</span></h1>
+                <p class="text-lg opacity-70 max-w-md">The world's most secure student verification vault. Get the support you deserve, backed by AI forensics.</p>
+                <div class="pt-6">
+                    <button onclick="changePage('page-login')" class="bg-nexus-blue text-white font-bold py-4 px-10 rounded-2xl shadow-xl hover:scale-105 transition-all">Get Started</button>
                 </div>
             </div>
-            <div class="md:w-1/2 relative">
-                <img src="https://images.pexels.com/photos/1438072/pexels-photo-1438072.jpeg" class="rounded-[2rem] shadow-2xl border-[12px] border-white" alt="Student">
+            <div class="relative flex justify-center items-center overflow-hidden max-h-[500px]">
+                <img src="https://images.pexels.com/photos/1438072/pexels-photo-1438072.jpeg" class="rounded-[2rem] shadow-2xl border-[12px] border-white dark:border-slate-800 max-w-full h-auto object-contain" alt="Student">
             </div>
         </main>
     </div>
 
     <div id="page-login" class="hidden-section h-screen w-full flex items-center justify-center hero-gradient p-6">
-        <div class="glass-card p-10 rounded-[2.5rem] w-full max-w-md">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-extrabold text-slate-900">Welcome Back</h2>
-                <p class="text-slate-500 mt-2">student@nexus.com / 1234</p>
-            </div>
-            <div class="space-y-4">
-                <input id="user-email" type="email" placeholder="Email Address" class="w-full p-4 rounded-2xl bg-white border-0 shadow-inner focus:ring-2 focus:ring-nexus-blue outline-none">
-                <input id="user-pass" type="password" placeholder="Security Code" class="w-full p-4 rounded-2xl bg-white border-0 shadow-inner focus:ring-2 focus:ring-nexus-blue outline-none">
-                <button onclick="validateLogin()" class="w-full bg-nexus-blue py-4 rounded-2xl text-white font-bold text-lg hover:scale-[1.02] transition-all shadow-lg">Sign In</button>
-                <button onclick="changePage('page-home')" class="w-full text-slate-400 text-sm">Return Home</button>
+        <div class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl p-10 rounded-[2.5rem] w-full max-w-md shadow-2xl border border-white/20 text-center">
+            <h2 class="text-3xl font-extrabold mb-10 text-slate-900 dark:text-white">Student <span class="text-nexus-blue">Login</span></h2>
+            <div class="space-y-4 text-left">
+                <label class="text-xs font-bold opacity-50 px-2 uppercase">Email Address</label>
+                <input id="user-email" type="email" placeholder="Enter any email" class="w-full p-4 rounded-2xl bg-white dark:bg-slate-800 border-0 outline-none focus:ring-2 focus:ring-nexus-blue text-slate-900 dark:text-white shadow-inner">
+                <label class="text-xs font-bold opacity-50 px-2 uppercase">Password</label>
+                <input id="user-pass" type="password" placeholder="••••" class="w-full p-4 rounded-2xl bg-white dark:bg-slate-800 border-0 outline-none focus:ring-2 focus:ring-nexus-blue text-slate-900 dark:text-white shadow-inner">
+                <button onclick="handleLogin()" class="w-full bg-nexus-blue py-4 mt-4 rounded-2xl text-white font-bold hover:opacity-90 transition-all shadow-lg">Enter Portal</button>
+                <button onclick="changePage('page-home')" class="w-full text-sm opacity-50 text-center mt-2">Back to Home</button>
             </div>
         </div>
     </div>
 
-    <div id="page-portal" class="hidden-section flex h-screen w-full bg-white overflow-hidden">
-        <aside class="w-80 bg-slate-50 border-r border-slate-200 flex flex-col p-8">
-            <div class="text-2xl font-black text-nexus-blue mb-12 flex items-center gap-2">
-                <div class="w-8 h-8 bg-nexus-yellow rounded-lg"></div> NEXUS.
-            </div>
-            <nav class="flex-1 space-y-2 overflow-y-auto">
-                <button onclick="switchTab('scholar-tab', this)" class="nav-btn w-full text-left p-4 rounded-2xl font-bold text-slate-500 hover:bg-slate-100 transition-all active-nav">🎓 Scholarships</button>
-                <button onclick="switchTab('verify-tab', this)" class="nav-btn w-full text-left p-4 rounded-2xl font-bold text-slate-500 hover:bg-slate-100 transition-all">📄 AI Verification</button>
-                <button onclick="switchTab('chat-tab', this)" class="nav-btn w-full text-left p-4 rounded-2xl font-bold text-slate-500 hover:bg-slate-100 transition-all">🤖 AI Assistant</button>
-                <button onclick="switchTab('grievance-tab', this)" class="nav-btn w-full text-left p-4 rounded-2xl font-bold text-slate-500 hover:bg-slate-100 transition-all">⚖️ Support Hub</button>
+    <div id="page-portal" class="hidden-section flex h-screen w-full bg-white dark:bg-slate-950 overflow-hidden">
+        <aside class="w-72 bg-slate-50 dark:bg-slate-900 border-r dark:border-slate-800 flex flex-col p-6">
+            <div class="text-2xl font-black text-nexus-blue dark:text-blue-400 mb-10">NEXUS.</div>
+            <nav class="flex-1 space-y-2">
+                <button onclick="switchTab('scholar-tab', this)" class="nav-btn w-full text-left p-4 rounded-xl font-bold opacity-60 active-nav">🎓 Scholarships</button>
+                <button onclick="switchTab('verify-tab', this)" class="nav-btn w-full text-left p-4 rounded-xl font-bold opacity-60">📄 Document Vault</button>
+                <button onclick="switchTab('chat-tab', this)" class="nav-btn w-full text-left p-4 rounded-xl font-bold opacity-60">🤖 AI Assistant</button>
+                <button onclick="switchTab('grievance-tab', this)" class="nav-btn w-full text-left p-4 rounded-xl font-bold opacity-60">⚖️ Support Hub</button>
+                <button onclick="switchTab('profile-tab', this)" class="nav-btn w-full text-left p-4 rounded-xl font-bold opacity-60">👤 Profile</button>
             </nav>
-            <button onclick="location.reload()" class="p-4 text-red-500 font-bold hover:bg-red-50 rounded-2xl transition-all">Logout</button>
+            <div class="pt-4 border-t dark:border-slate-800 space-y-2">
+                <button onclick="toggleDarkMode()" class="w-full p-3 bg-slate-200 dark:bg-slate-800 rounded-xl font-bold text-[10px] uppercase">🌓 Theme</button>
+                <button onclick="handleLogout()" class="w-full p-3 text-red-500 font-bold hover:bg-red-50 rounded-xl text-[10px] uppercase">Logout</button>
+            </div>
         </aside>
 
-        <main class="flex-1 p-12 overflow-y-auto bg-white">
-            
+        <main class="flex-1 p-10 overflow-y-auto">
             <div id="scholar-tab" class="tab-content active">
-                <div class="flex justify-between items-end mb-8">
-                    <div>
-                        <h2 class="text-4xl font-extrabold">Personalized <span class="text-nexus-blue">Opportunities</span></h2>
-                        <p class="text-slate-500">AI-recommended based on your profile.</p>
+                <h2 class="text-4xl font-black mb-8">Available <span class="text-nexus-blue">Grants</span></h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <div class="scholar-card p-8 rounded-3xl bg-slate-900 text-white animate-fade">
+                        <span class="text-xs font-bold bg-blue-500 px-3 py-1 rounded-full uppercase">Tech</span>
+                        <h3 class="text-2xl font-bold mt-4">Global Tech Grant</h3>
+                        <p class="text-xs opacity-60 mt-2">Available for Computer Science and Engineering students with exceptional coding projects.</p>
+                        <button onclick="applyForScholarship('Global Tech Grant', 'Tech')" class="mt-6 bg-white text-black font-bold px-6 py-2 rounded-xl">Apply Now</button>
                     </div>
-                    <div class="flex gap-2">
-                        <select id="filter-type" onchange="filterScholarships()" class="bg-slate-100 p-3 rounded-xl font-bold text-sm outline-none border-r-8 border-transparent">
-                            <option value="all">All Categories</option>
-                            <option value="women">Women Only</option>
-                            <option value="disabled">Disabled Category</option>
-                            <option value="tech">Tech Students</option>
-                        </select>
+                    <div class="scholar-card p-8 rounded-3xl bg-pink-50 dark:bg-pink-900/20 border-2 border-pink-100 animate-fade">
+                        <span class="text-xs font-bold bg-pink-500 text-white px-3 py-1 rounded-full uppercase">Women</span>
+                        <h3 class="text-2xl font-bold mt-4 text-slate-900 dark:text-white">Ada Lovelace Fellowship</h3>
+                        <p class="text-xs opacity-60 mt-2 text-slate-700 dark:text-slate-300">A special grant aimed at encouraging women in STEM to pursue research-heavy advanced degrees.</p>
+                        <button onclick="applyForScholarship('Ada Lovelace Fellowship', 'Women')" class="mt-6 bg-nexus-blue text-white font-bold px-6 py-2 rounded-xl">Apply Now</button>
                     </div>
-                </div>
-
-                <div id="scholarship-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="scholar-card p-8 rounded-[2rem] bg-slate-900 text-white relative overflow-hidden group" data-type="tech">
-                        <span class="bg-nexus-mint text-slate-900 px-3 py-1 rounded-full text-xs font-bold">TECH</span>
-                        <h3 class="text-2xl font-bold mt-4">Global Tech Grant 2026</h3>
-                        <p class="text-slate-400 mt-2 text-sm">Eligibility: 8.5+ CGPA, CS/IT Major.</p>
-                        <p class="text-xs text-nexus-yellow mt-4">Required: ID, Transcript, Recommendation Letter.</p>
-                        <button class="mt-6 bg-white text-slate-900 font-bold px-6 py-2 rounded-xl">View Details</button>
-                    </div>
-
-                    <div class="scholar-card p-8 rounded-[2rem] bg-pink-50 border-2 border-pink-100 relative overflow-hidden group" data-type="women">
-                        <span class="bg-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold">WOMEN</span>
-                        <h3 class="text-2xl font-bold mt-4 text-slate-900">Ada Lovelace Fellowship</h3>
-                        <p class="text-slate-500 mt-2 text-sm">Eligibility: Female students in STEM.</p>
-                        <button class="mt-6 bg-nexus-blue text-white font-bold px-6 py-2 rounded-xl">Apply Now</button>
-                    </div>
-
-                    <div class="scholar-card p-8 rounded-[2rem] bg-blue-50 border-2 border-blue-100 relative overflow-hidden group" data-type="disabled">
-                        <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold">DISABLED</span>
-                        <h3 class="text-2xl font-bold mt-4 text-slate-900">Equal Paths Scholarship</h3>
-                        <p class="text-slate-500 mt-2 text-sm">Eligibility: Physical disability certificate required.</p>
-                        <button class="mt-6 bg-nexus-blue text-white font-bold px-6 py-2 rounded-xl">Apply Now</button>
+                    <div class="scholar-card p-8 rounded-3xl bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-100 animate-fade">
+                        <span class="text-xs font-bold bg-emerald-500 text-white px-3 py-1 rounded-full uppercase">Inclusion</span>
+                        <h3 class="text-2xl font-bold mt-4 text-slate-900 dark:text-white">Unity Fund</h3>
+                        <p class="text-xs opacity-60 mt-2 text-slate-700 dark:text-slate-300">Financial assistance for students with disabilities to cover essential accessibility tools and tuition.</p>
+                        <button onclick="applyForScholarship('Unity Fund', 'Inclusion')" class="mt-6 bg-nexus-blue text-white font-bold px-6 py-2 rounded-xl">Apply Now</button>
                     </div>
                 </div>
             </div>
 
             <div id="verify-tab" class="tab-content">
-                <h2 class="text-4xl font-extrabold mb-2">AI Document <span class="text-nexus-blue">Vault</span></h2>
-                <p class="text-slate-500 mb-8">Upload documents for instant AI verification and live processing status.</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="md:col-span-1 bg-slate-50 p-8 rounded-[2rem] border border-dashed border-slate-300 flex flex-col items-center justify-center text-center">
-                        <div class="w-16 h-16 bg-nexus-blue/10 rounded-full flex items-center justify-center text-2xl mb-4">📁</div>
-                        <h4 class="font-bold">Upload New Document</h4>
-                        <p class="text-xs text-slate-400 mb-6">PDF, PNG, JPG (Max 5MB)</p>
-                        <input type="file" id="doc-upload" class="hidden">
-                        <button onclick="simulateUpload()" class="bg-nexus-blue text-white px-6 py-3 rounded-xl font-bold w-full">Select File</button>
+                <h2 class="text-4xl font-black mb-6">Document <span class="text-nexus-blue">Vault</span></h2>
+                <div class="bg-slate-50 dark:bg-slate-900 p-10 rounded-[2.5rem] border-2 border-dashed border-slate-200 dark:border-slate-800 text-center">
+                    <div class="mb-8 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-2xl flex items-center gap-4 text-left">
+                        <div class="text-2xl">⚠️</div>
+                        <p class="text-xs text-amber-800 dark:text-amber-200 leading-relaxed">
+                            <b>Fraud Notice:</b> AI cross-checks every file with university registries. Forged documents lead to permanent blacklisting.
+                        </p>
                     </div>
-
-                    <div class="md:col-span-2 space-y-4">
-                        <h4 class="font-bold uppercase text-xs tracking-widest text-slate-400">Live Tracking</h4>
-                        <div id="tracking-card" class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
-                            <div class="flex justify-between items-center mb-4">
-                                <span class="font-bold">Income_Certificate.pdf</span>
-                                <span id="status-badge" class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold">In Review</span>
-                            </div>
-                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                                <div id="progress-bar" class="bg-nexus-blue h-full w-1/3 transition-all duration-1000"></div>
-                            </div>
-                            <div class="flex justify-between mt-2 text-[10px] font-bold text-slate-400 uppercase">
-                                <span>Uploaded</span>
-                                <span>AI Scanned</span>
-                                <span>Verified</span>
-                            </div>
+                    <div class="max-w-md mx-auto mb-6 p-4 rounded-xl bg-white dark:bg-slate-800 border">
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" id="legal-consent" onchange="toggleVaultBtn(this)" class="mt-1 w-5 h-5 rounded text-nexus-blue">
+                            <span class="text-[10px] text-left opacity-70 font-bold italic">I confirm these documents are authentic.</span>
+                        </label>
+                    </div>
+                    <input type="file" id="vault-file-input" class="hidden" onchange="handleVaultUpload(this)">
+                    <button id="vault-upload-btn" onclick="document.getElementById('vault-file-input').click()" class="disabled-btn bg-nexus-blue text-white px-10 py-4 rounded-2xl font-bold shadow-lg">Choose File</button>
+                    <div id="upload-status" class="mt-8 hidden animate-fade text-left max-w-md mx-auto bg-white dark:bg-slate-800 p-6 rounded-2xl border">
+                        <div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+                            <div id="up-bar" class="bg-nexus-blue h-full w-0 transition-all duration-300"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div id="chat-tab" class="tab-content">
-                <h2 class="text-4xl font-extrabold mb-8">Nexus <span class="text-nexus-blue">AI Bot</span></h2>
-                <div class="bg-slate-50 rounded-[2.5rem] h-[500px] flex flex-col border border-slate-200 overflow-hidden">
-                    <div id="chat-window" class="flex-1 p-6 overflow-y-auto space-y-4">
-                        <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm max-w-xs text-sm">
-                            Hello! I am your AI assistant. Ask me about eligibility, documents, or scholarship dates!
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-4xl font-black">Nexus <span class="text-nexus-blue">AI</span></h2>
+                    <div class="flex items-center gap-2 bg-slate-100 dark:bg-slate-900 px-4 py-2 rounded-xl">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                        <span class="text-[10px] font-black uppercase opacity-60">Neural Engine Active</span>
+                    </div>
+                </div>
+                <div id="chat-window" class="bg-slate-100 dark:bg-slate-900 p-8 rounded-[2.5rem] h-[400px] overflow-y-auto mb-6 border dark:border-slate-800 shadow-inner">
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl rounded-tl-none max-w-[85%] text-sm mb-6 border shadow-sm">
+                        <p class="font-black text-nexus-blue text-[10px] uppercase mb-1">Nexus Protocol</p>
+                        Welcome. I can assist with scholarship eligibility, document verification status, or help you log a grievance. How can I help?
+                    </div>
+                </div>
+                <div class="flex gap-3 bg-white dark:bg-slate-900 p-2 rounded-3xl border dark:border-slate-800 shadow-xl">
+                    <input id="ai-input" type="text" placeholder="Ask about grants or vault security..." class="flex-1 p-4 bg-transparent outline-none text-sm px-6">
+                    <button onclick="askAI()" class="bg-nexus-blue text-white px-10 py-4 rounded-2xl font-bold shadow-lg">Consult AI</button>
+                </div>
+            </div>
+
+            <div id="profile-tab" class="tab-content">
+                <div class="flex justify-between items-end mb-8">
+                    <h2 class="text-4xl font-black">Digital <span class="text-nexus-blue">Identity</span></h2>
+                    <div class="px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-[10px] font-black uppercase">Verified</div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <div class="lg:col-span-4 space-y-6">
+                        <div class="bg-white dark:bg-slate-900 border dark:border-slate-800 rounded-[2rem] overflow-hidden">
+                            <div class="h-24 bg-nexus-blue"></div>
+                            <div class="px-8 pb-8 -mt-12 text-center">
+                                <div class="relative w-24 h-24 mx-auto mb-4 group">
+                                    <img id="profile-img" src="https://ui-avatars.com/api/?name=User&background=004aad&color=fff&size=128" class="w-full h-full rounded-2xl border-4 border-white dark:border-slate-900 shadow-xl object-cover">
+                                    <label for="img-upload" class="absolute inset-0 flex items-center justify-center bg-black/40 text-white rounded-2xl opacity-0 group-hover:opacity-100 cursor-pointer transition-opacity">
+                                        <span class="text-[10px] font-bold">CHANGE</span>
+                                    </label>
+                                    <input type="file" id="img-upload" class="hidden" accept="image/*" onchange="uploadPhoto(this)">
+                                </div>
+                                <h3 id="display-name" class="text-xl font-bold">Nexus Student</h3>
+                                <div class="mt-4 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl text-left">
+                                    <p class="text-[10px] font-black text-nexus-blue uppercase mb-2">Contact Details</p>
+                                    <p id="display-email" class="text-xs opacity-70 truncate mb-1">email@nexus.com</p>
+                                    <p id="display-phone" class="text-xs opacity-70">+00 0000 000 000</p>
+                                </div>
+                                <div class="mt-6 space-y-3">
+                                    <input id="profile-name-input" type="text" placeholder="Full Legal Name" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border-0 text-sm">
+                                    <input id="profile-phone-input" type="text" placeholder="Phone Number" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border-0 text-sm">
+                                    <button onclick="saveProfile()" class="w-full bg-nexus-blue text-white font-bold py-3 rounded-xl text-sm shadow-lg">Sync Identity</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="p-4 bg-white flex gap-2">
-                        <input id="ai-input" type="text" placeholder="Type your query..." class="flex-1 p-4 bg-slate-100 rounded-2xl outline-none focus:ring-2 focus:ring-nexus-blue">
-                        <button onclick="askAI()" class="bg-nexus-blue text-white px-8 rounded-2xl font-bold">Ask</button>
+                    <div class="lg:col-span-8">
+                        <div class="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-[2rem] border dark:border-slate-800 border-dashed">
+                            <h4 class="text-sm font-black mb-4 text-nexus-blue">Audit Trail</h4>
+                            <div id="history-list" class="space-y-3"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div id="grievance-tab" class="tab-content">
-                <h2 class="text-4xl font-extrabold mb-8">Resolution <span class="text-nexus-blue">Hub</span></h2>
-                <div class="bg-slate-50 p-10 rounded-[2rem] border border-slate-200">
-                    <textarea id="grievance-text" placeholder="Describe your issue..." class="w-full p-6 rounded-2xl bg-white border-0 shadow-sm h-48 focus:ring-2 focus:ring-nexus-blue outline-none"></textarea>
-                    <button onclick="triggerNotification()" class="mt-6 bg-nexus-blue text-white font-bold py-4 px-12 rounded-2xl shadow-lg">Submit Ticket</button>
+                <h2 class="text-4xl font-black mb-6">Support <span class="text-nexus-blue">Hub</span></h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-1 bg-slate-50 p-6 rounded-3xl border">
+                        <h3 class="font-bold mb-4">New Ticket</h3>
+                        <textarea id="grievance-text" placeholder="Explain the issue..." class="w-full p-4 rounded-xl bg-white border-0 h-32 mb-4 text-sm"></textarea>
+                        <button onclick="submitGrievance()" class="w-full bg-nexus-blue text-white py-3 rounded-xl font-bold shadow-lg">Submit</button>
+                    </div>
+                    <div class="lg:col-span-2">
+                        <div id="ticket-list" class="space-y-4"></div>
+                    </div>
                 </div>
             </div>
-
         </main>
     </div>
 
-    <div id="notif" class="fixed bottom-10 right-10 transform translate-y-20 opacity-0 bg-slate-900 text-white p-6 rounded-2xl shadow-2xl transition-all duration-500 z-50 flex items-center gap-4">
-        <div class="w-10 h-10 bg-nexus-mint rounded-full flex items-center justify-center text-slate-900">🔔</div>
-        <div>
-            <p class="font-bold text-sm">System Notification</p>
-            <p id="notif-msg" class="text-xs text-slate-400">Your ticket has been generated.</p>
-        </div>
+    <div id="notif" class="fixed bottom-10 right-10 transform translate-y-32 opacity-0 bg-slate-900 text-white p-6 rounded-2xl shadow-2xl transition-all z-50 pointer-events-none">
+        <span id="notif-msg"></span>
     </div>
 
     <script>
-        // PAGE & TAB NAVIGATION
-        function changePage(pageId) {
+        window.onload = () => {
+            if(localStorage.getItem('nexus_login') === 'true') changePage('page-portal');
+            else changePage('page-home');
+            loadProfile(); loadHistory(); loadTickets();
+        };
+
+        function changePage(id) {
             document.querySelectorAll('#page-home, #page-login, #page-portal').forEach(p => p.classList.add('hidden-section'));
-            document.getElementById(pageId).classList.remove('hidden-section');
+            document.getElementById(id).classList.remove('hidden-section');
         }
 
-        function switchTab(tabId, btn) {
+        function handleLogin() {
+            const email = document.getElementById('user-email').value;
+            if(email) {
+                localStorage.setItem('nexus_login', 'true');
+                localStorage.setItem('p_email', email);
+                changePage('page-portal');
+                loadProfile();
+                showNotification("Welcome Back");
+            }
+        }
+
+        function handleLogout() { localStorage.removeItem('nexus_login'); location.reload(); }
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); }
+
+        function switchTab(id, btn) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active-nav'));
-            document.getElementById(tabId).classList.add('active');
+            document.getElementById(id).classList.add('active');
             btn.classList.add('active-nav');
         }
 
-        function validateLogin() {
-            const e = document.getElementById('user-email').value;
-            const p = document.getElementById('user-pass').value;
-            if (e === "student@nexus.com" && p === "1234") { changePage('page-portal'); showNotification("Login Successful! Welcome back."); }
-            else { alert("Invalid Credentials"); }
+        function submitGrievance() {
+            const txt = document.getElementById('grievance-text');
+            if(!txt.value.trim()) return;
+            let tix = JSON.parse(localStorage.getItem('nexus_tickets') || '[]');
+            tix.unshift({ id: "TX-"+Math.floor(1000+Math.random()*9000), body: txt.value, status: "Pending", date: new Date().toLocaleDateString() });
+            localStorage.setItem('nexus_tickets', JSON.stringify(tix));
+            txt.value = ""; loadTickets();
+            showNotification("Ticket Created");
         }
 
-        // FILTER LOGIC
-        function filterScholarships() {
-            const filter = document.getElementById('filter-type').value;
-            const cards = document.querySelectorAll('.scholar-card');
-            cards.forEach(card => {
-                if (filter === 'all' || card.getAttribute('data-type') === filter) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+        function loadTickets() {
+            const list = document.getElementById('ticket-list');
+            const tix = JSON.parse(localStorage.getItem('nexus_tickets') || '[]');
+            if(!list) return;
+            list.innerHTML = tix.length ? "" : "<p class='opacity-40 italic text-sm text-center'>No active tickets.</p>";
+            tix.forEach(t => {
+                const div = document.createElement('div');
+                div.className = "p-4 bg-white dark:bg-slate-800 rounded-2xl border flex justify-between items-center animate-fade";
+                div.innerHTML = `<div><p class='font-bold text-sm'>${t.body}</p><p class='text-[10px] opacity-40 uppercase'>${t.id}</p></div><span class='text-[10px] font-black uppercase bg-slate-100 px-3 py-1 rounded-full'>${t.status}</span>`;
+                list.appendChild(div);
             });
         }
 
-        // AI DOCUMENT VERIFICATION SIMULATOR
-        function simulateUpload() {
-            const bar = document.getElementById('progress-bar');
-            const badge = document.getElementById('status-badge');
-            showNotification("File Uploaded. AI scanning started...");
-            
-            bar.style.width = "66%";
-            setTimeout(() => {
-                bar.style.width = "100%";
-                bar.classList.replace('bg-nexus-blue', 'bg-nexus-mint');
-                badge.innerText = "Verified ✅";
-                badge.className = "bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold";
-                showNotification("AI Verification Complete: Documents are valid.");
-            }, 3000);
+        function toggleVaultBtn(cb) { 
+            const b = document.getElementById('vault-upload-btn');
+            cb.checked ? b.classList.remove('disabled-btn') : b.classList.add('disabled-btn');
         }
 
-        // AI CHATBOT LOGIC
+        function handleVaultUpload(input) {
+            const status = document.getElementById('upload-status');
+            const bar = document.getElementById('up-bar');
+            status.classList.remove('hidden');
+            let w = 0;
+            const inter = setInterval(() => {
+                w += 25;
+                if(w >= 100) { clearInterval(inter); showNotification("Upload Verified"); }
+                bar.style.width = w + "%";
+            }, 150);
+        }
+
+        const aiReplies = [
+            "Your eligibility for the Global Tech Grant depends on your GPA being above 3.5. Shall I check your uploaded transcripts?",
+            "For the Ada Lovelace Fellowship, ensure you have a reference letter from a STEM faculty member in your Document Vault.",
+            "I've verified your PRN. Your 'Unity Fund' application is currently being audited by the financial welfare committee.",
+            "If you're having trouble with document verification, please ensure the scan is clear and under 5MB in size.",
+            "Currently, the AI Neural Engine is cross-referencing your profile with 2026 scholarship criteria. You will be notified of matches."
+        ];
+        let rIdx = 0;
+
         function askAI() {
-            const input = document.getElementById('ai-input');
-            const window = document.getElementById('chat-window');
-            if(!input.value) return;
-
-            // Add User Message
-            window.innerHTML += `<div class="bg-nexus-blue text-white p-4 rounded-2xl rounded-tr-none shadow-sm max-w-xs text-sm ml-auto">${input.value}</div>`;
-            
-            // AI Response Logic
-            let response = "I'm analyzing that for you. Generally, for most scholarships, you need a Marksheet, Income Certificate, and ID Proof.";
-            if(input.value.toLowerCase().includes("tech")) response = "The Global Tech Grant requires an 8.5 CGPA and a coding portfolio. Would you like the link?";
-            if(input.value.toLowerCase().includes("women")) response = "Yes! The Ada Lovelace Fellowship is currently open for female STEM students.";
-
+            const i = document.getElementById('ai-input');
+            const w = document.getElementById('chat-window');
+            if(!i.value.trim()) return;
+            const u = document.createElement('div');
+            u.className = "bg-nexus-blue text-white p-4 rounded-2xl rounded-tr-none ml-auto max-w-[80%] text-sm mb-4 animate-fade shadow-md";
+            u.innerHTML = i.value;
+            w.appendChild(u);
+            w.scrollTop = w.scrollHeight;
             setTimeout(() => {
-                window.innerHTML += `<div class="bg-white border p-4 rounded-2xl rounded-tl-none shadow-sm max-w-xs text-sm">🤖 ${response}</div>`;
-                window.scrollTop = window.scrollHeight;
-            }, 1000);
-            
-            input.value = "";
+                const a = document.createElement('div');
+                a.className = "bg-white dark:bg-slate-800 p-4 rounded-2xl rounded-tl-none max-w-[80%] text-sm mb-4 border shadow-sm animate-fade";
+                a.innerHTML = `<p class="font-black text-nexus-blue text-[10px] uppercase mb-1">Nexus Assistant</p>${aiReplies[rIdx]}`;
+                w.appendChild(a);
+                w.scrollTop = w.scrollHeight;
+                rIdx = (rIdx + 1) % aiReplies.length;
+            }, 700);
+            i.value = "";
         }
 
-        // EVENT TRIGGERED NOTIFICATIONS
-        function showNotification(msg) {
-            const notif = document.getElementById('notif');
-            document.getElementById('notif-msg').innerText = msg;
-            notif.classList.remove('translate-y-20', 'opacity-0');
-            setTimeout(() => {
-                notif.classList.add('translate-y-20', 'opacity-0');
-            }, 4000);
-        }
-
-        function triggerNotification() {
-            const text = document.getElementById('grievance-text').value;
-            if(text) {
-                showNotification("Ticket ID: NX-" + Math.floor(Math.random()*9000));
-                document.getElementById('grievance-text').value = "";
+        function uploadPhoto(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById('profile-img').src = e.target.result;
+                    localStorage.setItem('p_img', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+                showNotification("Photo Updated");
             }
+        }
+
+        function loadProfile() {
+            document.getElementById('display-name').textContent = localStorage.getItem('p_name') || "Nexus Student";
+            document.getElementById('display-email').textContent = localStorage.getItem('p_email') || "Not set";
+            document.getElementById('display-phone').textContent = localStorage.getItem('p_phone') || "Not set";
+            if(localStorage.getItem('p_img')) document.getElementById('profile-img').src = localStorage.getItem('p_img');
+        }
+
+        function saveProfile() {
+            const val = document.getElementById('profile-name-input').value;
+            const phone = document.getElementById('profile-phone-input').value;
+            if(val) localStorage.setItem('p_name', val);
+            if(phone) localStorage.setItem('p_phone', phone);
+            loadProfile();
+            showNotification("Profile Updated");
+        }
+
+        function applyForScholarship(name, cat) {
+            let h = JSON.parse(localStorage.getItem('nexus_history') || '[]');
+            h.unshift({ name, cat, date: new Date().toLocaleDateString(), status: "Audit" });
+            localStorage.setItem('nexus_history', JSON.stringify(h));
+            loadHistory();
+            showNotification("Application Submitted");
+        }
+
+        function loadHistory() {
+            const list = document.getElementById('history-list');
+            const h = JSON.parse(localStorage.getItem('nexus_history') || '[]');
+            if(!list) return;
+            list.innerHTML = h.length ? "" : "<p class='opacity-40 italic text-sm'>No history found.</p>";
+            h.forEach(item => {
+                const d = document.createElement('div');
+                d.className = "flex justify-between items-center p-3 bg-white dark:bg-slate-800/50 rounded-xl border text-[11px]";
+                d.innerHTML = `<span>${item.name}</span><span class='font-bold text-nexus-blue'>${item.status}</span>`;
+                list.appendChild(d);
+            });
+        }
+
+        function showNotification(msg) {
+            const n = document.getElementById('notif');
+            document.getElementById('notif-msg').textContent = msg;
+            n.classList.remove('translate-y-32', 'opacity-0');
+            setTimeout(() => n.classList.add('translate-y-32', 'opacity-0'), 3000);
         }
     </script>
 </body>
