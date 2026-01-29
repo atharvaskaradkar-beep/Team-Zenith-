@@ -85,25 +85,59 @@
 
         <main class="flex-1 p-10 overflow-y-auto">
             <div id="scholar-tab" class="tab-content active">
-                <h2 class="text-4xl font-black mb-8">Available <span class="text-nexus-blue">Grants</span></h2>
-                <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                    <div class="scholar-card p-8 rounded-3xl bg-slate-900 text-white animate-fade">
-                        <span class="text-xs font-bold bg-blue-500 px-3 py-1 rounded-full uppercase">Tech</span>
-                        <h3 class="text-2xl font-bold mt-4">Global Tech Grant</h3>
-                        <p class="text-xs opacity-60 mt-2">Available for Computer Science and Engineering students with exceptional coding projects.</p>
-                        <button onclick="applyForScholarship('Global Tech Grant', 'Tech')" class="mt-6 bg-white text-black font-bold px-6 py-2 rounded-xl">Apply Now</button>
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+                    <h2 class="text-4xl font-black">Available <span class="text-nexus-blue">Grants</span></h2>
+                    
+                    <div class="flex gap-2">
+                        <input type="text" id="scholarship-search" onkeyup="filterScholarships()" placeholder="Search scholarships..." class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border-0 text-sm focus:ring-2 focus:ring-nexus-blue outline-none w-64">
+                        <select id="category-filter" onchange="filterScholarships()" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border-0 text-sm focus:ring-2 focus:ring-nexus-blue outline-none cursor-pointer">
+                            <option value="all">All Categories</option>
+                            <option value="Govt">Govt of India</option>
+                            <option value="Minority">Minority</option>
+                            <option value="Corporate">Corporate CSR</option>
+                            <option value="State">State Govt</option>
+                            <option value="Women">Women/STEM</option>
+                            <option value="Merit">Merit Based</option>
+                        </select>
                     </div>
-                    <div class="scholar-card p-8 rounded-3xl bg-pink-50 dark:bg-pink-900/20 border-2 border-pink-100 animate-fade">
-                        <span class="text-xs font-bold bg-pink-500 text-white px-3 py-1 rounded-full uppercase">Women</span>
-                        <h3 class="text-2xl font-bold mt-4 text-slate-900 dark:text-white">Ada Lovelace Fellowship</h3>
-                        <p class="text-xs opacity-60 mt-2 text-slate-700 dark:text-slate-300">A special grant aimed at encouraging women in STEM to pursue research-heavy advanced degrees.</p>
-                        <button onclick="applyForScholarship('Ada Lovelace Fellowship', 'Women')" class="mt-6 bg-nexus-blue text-white font-bold px-6 py-2 rounded-xl">Apply Now</button>
+                </div>
+
+                <div id="scholarship-grid" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <div class="scholar-card p-8 rounded-3xl bg-slate-900 text-white animate-fade" data-category="Govt" data-name="NSP Central Sector">
+                        <span class="text-xs font-bold bg-blue-500 px-3 py-1 rounded-full uppercase">Govt of India</span>
+                        <h3 class="text-2xl font-bold mt-4">NSP Central Sector</h3>
+                        <p class="text-xs opacity-60 mt-2">Support for university students based on Class 12th merit. Direct Benefit Transfer (DBT) enabled.</p>
+                        <button onclick="applyForScholarship('NSP Central Sector', 'Govt')" class="mt-6 bg-white text-black font-bold px-6 py-2 rounded-xl">Apply Now</button>
                     </div>
-                    <div class="scholar-card p-8 rounded-3xl bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-100 animate-fade">
-                        <span class="text-xs font-bold bg-emerald-500 text-white px-3 py-1 rounded-full uppercase">Inclusion</span>
-                        <h3 class="text-2xl font-bold mt-4 text-slate-900 dark:text-white">Unity Fund</h3>
-                        <p class="text-xs opacity-60 mt-2 text-slate-700 dark:text-slate-300">Financial assistance for students with disabilities to cover essential accessibility tools and tuition.</p>
-                        <button onclick="applyForScholarship('Unity Fund', 'Inclusion')" class="mt-6 bg-nexus-blue text-white font-bold px-6 py-2 rounded-xl">Apply Now</button>
+                    <div class="scholar-card p-8 rounded-3xl bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-100 animate-fade" data-category="Minority" data-name="MOMA Merit-Cum-Means">
+                        <span class="text-xs font-bold bg-blue-600 text-white px-3 py-1 rounded-full uppercase">Minority</span>
+                        <h3 class="text-2xl font-bold mt-4 text-slate-900 dark:text-white">MOMA Merit-Cum-Means</h3>
+                        <p class="text-xs opacity-60 mt-2 text-slate-700 dark:text-slate-300">For professional/technical courses. Requires valid income certificate (under 2.5 LPA).</p>
+                        <button onclick="applyForScholarship('MOMA MCM', 'Minority')" class="mt-6 bg-nexus-blue text-white font-bold px-6 py-2 rounded-xl">Apply Now</button>
+                    </div>
+                    <div class="scholar-card p-8 rounded-3xl bg-purple-50 dark:bg-purple-900/20 border-2 border-purple-100 animate-fade" data-category="Corporate" data-name="HDFC Badhte Kadam">
+                        <span class="text-xs font-bold bg-purple-500 text-white px-3 py-1 rounded-full uppercase">Corporate CSR</span>
+                        <h3 class="text-2xl font-bold mt-4 text-slate-900 dark:text-white">HDFC Badhte Kadam</h3>
+                        <p class="text-xs opacity-60 mt-2 text-slate-700 dark:text-slate-300">Private funding for high-merit students from underprivileged backgrounds or those in crisis.</p>
+                        <button onclick="applyForScholarship('HDFC Badhte Kadam', 'Corporate')" class="mt-6 bg-nexus-blue text-white font-bold px-6 py-2 rounded-xl">Apply Now</button>
+                    </div>
+                    <div class="scholar-card p-8 rounded-3xl bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-100 animate-fade" data-category="State" data-name="Post-Matric ST/SC/OBC">
+                        <span class="text-xs font-bold bg-amber-500 text-white px-3 py-1 rounded-full uppercase">State Govt</span>
+                        <h3 class="text-2xl font-bold mt-4 text-slate-900 dark:text-white">Post-Matric (ST/SC/OBC)</h3>
+                        <p class="text-xs opacity-60 mt-2 text-slate-700 dark:text-slate-300">State-funded fee reimbursement for reserved category students in higher education.</p>
+                        <button onclick="applyForScholarship('State Post-Matric', 'State')" class="mt-6 bg-nexus-blue text-white font-bold px-6 py-2 rounded-xl">Apply Now</button>
+                    </div>
+                    <div class="scholar-card p-8 rounded-3xl bg-pink-50 dark:bg-pink-900/20 border-2 border-pink-100 animate-fade" data-category="Women" data-name="Pragati Scholarship">
+                        <span class="text-xs font-bold bg-pink-500 text-white px-3 py-1 rounded-full uppercase">AICTE</span>
+                        <h3 class="text-2xl font-bold mt-4 text-slate-900 dark:text-white">Pragati Scholarship</h3>
+                        <p class="text-xs opacity-60 mt-2 text-slate-700 dark:text-slate-300">Empowering girls in technical education. Exclusive for AICTE approved degree/diploma courses.</p>
+                        <button onclick="applyForScholarship('Pragati Scholarship', 'Women')" class="mt-6 bg-nexus-blue text-white font-bold px-6 py-2 rounded-xl">Apply Now</button>
+                    </div>
+                    <div class="scholar-card p-8 rounded-3xl bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-100 animate-fade" data-category="Merit" data-name="RF Undergraduate">
+                        <span class="text-xs font-bold bg-emerald-500 text-white px-3 py-1 rounded-full uppercase">Reliance</span>
+                        <h3 class="text-2xl font-bold mt-4 text-slate-900 dark:text-white">RF Undergraduate</h3>
+                        <p class="text-xs opacity-60 mt-2 text-slate-700 dark:text-slate-300">Supporting future leaders in AI and Digital sectors across various Indian institutes.</p>
+                        <button onclick="applyForScholarship('Reliance Foundation', 'Merit')" class="mt-6 bg-nexus-blue text-white font-bold px-6 py-2 rounded-xl">Apply Now</button>
                     </div>
                 </div>
             </div>
@@ -171,11 +205,13 @@
                                     <input type="file" id="img-upload" class="hidden" accept="image/*" onchange="uploadPhoto(this)">
                                 </div>
                                 <h3 id="display-name" class="text-xl font-bold">Nexus Student</h3>
+                                
                                 <div class="mt-4 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl text-left">
                                     <p class="text-[10px] font-black text-nexus-blue uppercase mb-2">Contact Details</p>
                                     <p id="display-email" class="text-xs opacity-70 truncate mb-1">email@nexus.com</p>
                                     <p id="display-phone" class="text-xs opacity-70">+00 0000 000 000</p>
                                 </div>
+
                                 <div class="mt-6 space-y-3">
                                     <input id="profile-name-input" type="text" placeholder="Full Legal Name" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border-0 text-sm">
                                     <input id="profile-phone-input" type="text" placeholder="Phone Number" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border-0 text-sm">
@@ -246,6 +282,26 @@
             btn.classList.add('active-nav');
         }
 
+        // FILTER LOGIC
+        function filterScholarships() {
+            const query = document.getElementById('scholarship-search').value.toLowerCase();
+            const cat = document.getElementById('category-filter').value;
+            const cards = document.querySelectorAll('.scholar-card');
+
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name').toLowerCase();
+                const cardCat = card.getAttribute('data-category');
+                const matchesSearch = name.includes(query);
+                const matchesCat = (cat === 'all' || cardCat === cat);
+
+                if(matchesSearch && matchesCat) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
         function submitGrievance() {
             const txt = document.getElementById('grievance-text');
             if(!txt.value.trim()) return;
@@ -287,11 +343,11 @@
         }
 
         const aiReplies = [
-            "Your eligibility for the Global Tech Grant depends on your GPA being above 3.5. Shall I check your uploaded transcripts?",
-            "For the Ada Lovelace Fellowship, ensure you have a reference letter from a STEM faculty member in your Document Vault.",
-            "I've verified your PRN. Your 'Unity Fund' application is currently being audited by the financial welfare committee.",
-            "If you're having trouble with document verification, please ensure the scan is clear and under 5MB in size.",
-            "Currently, the AI Neural Engine is cross-referencing your profile with 2026 scholarship criteria. You will be notified of matches."
+            "Your eligibility for the NSP Central Sector depends on being in the top 20th percentile. Shall I check your board results?",
+            "For the Pragati Scholarship, ensure you have your AICTE-approved college ID in the Vault.",
+            "I've verified your PRN. Your 'HDFC Badhte Kadam' application is currently being audited.",
+            "Reminder: MOMA scholarship requires your religious minority self-declaration form.",
+            "Reliance Foundation results for 2026 will be announced soon. Your aptitude score is already linked."
         ];
         let rIdx = 0;
 
